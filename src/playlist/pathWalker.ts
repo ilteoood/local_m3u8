@@ -4,30 +4,42 @@ import * as path from "path";
 
 export class PathWalker {
 
+    private readonly pathToScan: string = "/media";
     private readonly supportedExtensions: string [] = ['.avi', '.mkv', '.mp4'];
 
-    constructor(private pathToScan: string = process.env.PATH_TO_SCAN || "/media") {
+    constructor() {
+        this.pathToScan = process.env.PATH_TO_SCAN || this.pathToScan;
+        this.supportedExtensions = this.arrayFromEnv(process.env.SUPPORTED_EXTENSIONS, this.supportedExtensions);
     }
 
-    async generate(): Promise<string> {
+    public async generate(): Promise<string> {
         return new Promise((resolve, reject) => {
-            const walker = walk.walk(this.pathToScan, {});
-            const playlistManager = new Playlistmanager("Rclone");
+            const walker = walk.walk(this.pathToScan, {
+                filters: this.arrayFromEnv(process.env.PATHS_TO_EXCLUDE, [])
+            });
+            const playlistManager = new Playlistmanager(this.pathToScan);
             walker.on("file", (root, fileStats, next) => {
-                console.log(`New file: ${fileStats.name}`)
-                const fileExtension = path.extname(fileStats.name);
+                const filePath = `${root}/${fileStats.name}`;
+                const fileExtension = path.extname(filePath);
                 if (this.supportedExtensions.includes(fileExtension)) {
-                    playlistManager.addFile(fileStats.name);
+                    console.log(`New file: ${filePath}`);
+                    playlistManager.addFile(filePath);
                 }
                 next();
             });
             walker.on("errors", () => {
+                console.log("Error!");
                 reject(undefined);
             });
             walker.on("end", () => {
-                const playlistDirectory = playlistManager.save(this.pathToScan);
+                console.log("Finished!");
+                const playlistDirectory = playlistManager.save();
                 resolve(playlistDirectory);
             });
         });
+    }
+
+    private arrayFromEnv(envValue: string, fallbackValue: string[]): string[] {
+        return envValue ? envValue.split(",") : fallbackValue;
     }
 }

@@ -5,22 +5,27 @@ export default class Playlistmanager {
 
     private playlistContent: string = "#EXTM3U\n";
 
-    constructor(playlistName: string) {
+    constructor(private pathToScan: string,
+                private playlistName: string = process.env.PLAYLIST_NAME || "Rclone") {
         this.addRow(`#PLAYLIST:${playlistName}`);
     }
 
     public addFile(filePath: string): Playlistmanager {
-        console.log(filePath);
-        const directoryName = path.dirname(filePath);
         const fileName = path.basename(filePath);
+        const baseUrl = process.env.BASE_URL || 'localhost:8080';
+        const relativePath = this.findRelativePath(filePath, this.pathToScan);
         return this.addRow(`#EXTINF:-1 tvg-name="${fileName}", ${fileName}`)
-            .addRow(`#EXTGRP:${directoryName}`)
-            .addRow(`${process.env.BASE_URL || 'localhost:8080'}/${filePath}`);
+            .addRow(`#EXTGRP:${relativePath}`)
+            .addRow(`${baseUrl}${relativePath}`);
     }
 
-    public save(pathToSave: string): string {
-        const fileName = `${Math.random().toString(36).substring(7)}.m3u8`;
-        const filePath = path.join(pathToSave, fileName);
+    private findRelativePath(filePath: string, pathToScan: string) {
+        return filePath.replace(pathToScan, '');
+    }
+
+    public save(): string {
+        const fileName = `${this.playlistName}.m3u8`;
+        const filePath = path.join(this.pathToScan, fileName);
         fs.writeFileSync(filePath, this.playlistContent, {flag: 'w'});
         return filePath;
     }

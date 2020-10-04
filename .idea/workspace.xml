@@ -20,6 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34ec55af-c529-4c96-90be-416859f84e1d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/playlist/pathWalker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist/pathWalker.ts" afterDir="false" />
@@ -60,7 +63,7 @@
       <updated>1601724295412</updated>
       <workItem from="1601724297146" duration="1371000" />
       <workItem from="1601743676951" duration="8126000" />
-      <workItem from="1601801277569" duration="215000" />
+      <workItem from="1601801277569" duration="3121000" />
     </task>
     <servers />
   </component>
@@ -80,6 +83,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="425" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601802726954">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="425" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1601802726954" />
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601747571311">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -100,9 +107,17 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601801461232" />
-    <state x="385" y="196" key="search.everywhere.popup" timestamp="1601747519601">
+    <state x="508" y="159" key="RollbackChangesDialog" timestamp="1601801778118">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1601747519601" />
+    <state x="508" y="159" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1601801778118" />
+    <state x="421" y="205" width="598" height="490" key="find.popup" timestamp="1601802887005">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="421" y="205" width="598" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1601802887005" />
+    <state x="385" y="196" key="search.everywhere.popup" timestamp="1601804783561">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1601804783561" />
   </component>
 </project>
