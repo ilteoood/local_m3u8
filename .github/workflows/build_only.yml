@@ -16,14 +16,5 @@ jobs:
         uses: ilteoood/docker_buildx@master
         with:
           tag: latest,1.0.0
-          platform: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
+          platform: linux/amd64,linux/arm64,linux/arm/v7
           imageName: ilteoood/local_m3u8
-      - name: Scan image
-        uses: anchore/scan-action@v2
-        with:
-          image-reference: "ilteoood/local_m3u8:latest"
-          dockerfile-path: "./Dockerfile"
-          fail-build: true
-          include-app-packages: true
-      - name: Anchore inline scan JSON results
-        run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
