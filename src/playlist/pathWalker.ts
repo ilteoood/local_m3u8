@@ -6,7 +6,7 @@ export class PathWalker {
 
     private readonly supportedExtensions: string [] = ['.avi', '.mkv', '.mp4'];
 
-    constructor(private pathToScan: string = "/media/movies") {
+    constructor(private pathToScan: string = process.env.PATH_TO_SCAN || "/media") {
     }
 
     async generate(): Promise<string> {

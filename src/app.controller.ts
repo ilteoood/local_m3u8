@@ -9,7 +9,7 @@ export class AppController {
 
     @Get('/playlist')
     async getPlaylist() {
-        const pathWalker = new PathWalker(process.env.PATH_TO_SCAN);
+        const pathWalker = new PathWalker();
         const walkResult = await pathWalker.generate();
         if (walkResult) {
             return fs.createReadStream(walkResult);

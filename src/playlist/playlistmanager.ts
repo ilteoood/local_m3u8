@@ -10,10 +10,12 @@ export default class Playlistmanager {
     }
 
     public addFile(filePath: string): Playlistmanager {
+        console.log(filePath);
         const directoryName = path.dirname(filePath);
         const fileName = path.basename(filePath);
         return this.addRow(`#EXTINF:-1 tvg-name="${fileName}", ${fileName}`)
-            .addRow(`#EXTGRP:${directoryName}`);
+            .addRow(`#EXTGRP:${directoryName}`)
+            .addRow(`${process.env.BASE_URL || 'localhost:8080'}/${filePath}`);
     }
 
     public save(pathToSave: string): string {

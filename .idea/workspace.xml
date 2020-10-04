@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="34ec55af-c529-4c96-90be-416859f84e1d" name="Default Changelist" comment="" />
+    <list default="true" id="34ec55af-c529-4c96-90be-416859f84e1d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playlist/pathWalker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist/pathWalker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playlist/playlistmanager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist/playlistmanager.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +47,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -54,7 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1601724295412</updated>
       <workItem from="1601724297146" duration="1371000" />
-      <workItem from="1601743676951" duration="7933000" />
+      <workItem from="1601743676951" duration="8126000" />
+      <workItem from="1601801277569" duration="215000" />
     </task>
     <servers />
   </component>
@@ -78,6 +84,22 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1601747571311" />
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1601801461232">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601801461232" />
+    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1601801461231">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601801461231" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1601801461231">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601801461231" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1601801461232">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601801461232" />
     <state x="385" y="196" key="search.everywhere.popup" timestamp="1601747519601">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
