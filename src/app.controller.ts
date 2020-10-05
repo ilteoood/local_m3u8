@@ -14,7 +14,7 @@ export class AppController {
         const pathWalker = new PathWalker();
         const walkResult = await pathWalker.generate();
         if (walkResult) {
-            return await fs.createReadStream(walkResult).pipe(response);
+            return await this.createPlaylistStream(pathWalker).pipe(response);
         }
         throw new HttpException({
             status: HttpStatus.INTERNAL_SERVER_ERROR
@@ -25,6 +25,10 @@ export class AppController {
     @Header('Content-Type', 'application/x-mpegURL')
     @Header('Content-Disposition', `attachment; filename=${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`)
     async getPlaylist(@Res() response) {
-        return await fs.createReadStream(new PathWalker().playlistPath()).pipe(response);
+        return await this.createPlaylistStream().pipe(response);
+    }
+
+    private createPlaylistStream(pathWalker: PathWalker = new PathWalker()): fs.ReadStream {
+        return fs.createReadStream(new PathWalker().playlistPath());
     }
 }
