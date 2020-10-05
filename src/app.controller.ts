@@ -7,10 +7,10 @@ export class AppController {
     constructor() {
     }
 
-    @Get('/playlist')
+    @Get('/playlist/generate')
     @Header('Content-Type', 'application/x-mpegURL')
     @Header('Content-Disposition', `attachment; filename=${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`)
-    async getPlaylist(@Res() response) {
+    async generatePlaylist(@Res() response) {
         const pathWalker = new PathWalker();
         const walkResult = await pathWalker.generate();
         if (walkResult) {
@@ -19,5 +19,12 @@ export class AppController {
         throw new HttpException({
             status: HttpStatus.INTERNAL_SERVER_ERROR
         }, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Get('/playlist')
+    @Header('Content-Type', 'application/x-mpegURL')
+    @Header('Content-Disposition', `attachment; filename=${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`)
+    async getPlaylist(@Res() response) {
+        return await fs.createReadStream(new PathWalker().playlistPath()).pipe(response);
     }
 }

@@ -23,11 +23,13 @@ export default class Playlistmanager {
         return filePath.replace(pathToScan, '');
     }
 
-    public save(): string {
+    public save() {
+        fs.writeFileSync(this.playlistPath(), this.playlistContent, {flag: 'w'});
+    }
+
+    public playlistPath(): string {
         const fileName = `${this.playlistName}.m3u8`;
-        const filePath = path.join(this.pathToScan, fileName);
-        fs.writeFileSync(filePath, this.playlistContent, {flag: 'w'});
-        return filePath;
+        return path.join(this.pathToScan, fileName);
     }
 
     private addRow(rowContent: string): Playlistmanager {

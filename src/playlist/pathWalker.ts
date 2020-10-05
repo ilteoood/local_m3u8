@@ -33,10 +33,14 @@ export class PathWalker {
             });
             walker.on("end", () => {
                 console.log("Finished!");
-                const playlistDirectory = playlistManager.save();
-                resolve(playlistDirectory);
+                playlistManager.save();
+                resolve(playlistManager.playlistPath());
             });
         });
+    }
+
+    public playlistPath(): string {
+        return new Playlistmanager(this.pathToScan).playlistPath();
     }
 
     private arrayFromEnv(envValue: string, fallbackValue: string[]): string[] {
