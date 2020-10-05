@@ -14,8 +14,9 @@ export default class Playlistmanager {
         const fileName = path.basename(filePath);
         const baseUrl = process.env.BASE_URL || 'localhost:8080';
         const relativePath = this.findRelativePath(filePath, this.pathToScan);
+        const relativeWithoutFile = this.findRelativePath(relativePath, fileName);
         return this.addRow(`#EXTINF:-1 tvg-name="${fileName}", ${fileName}`)
-            .addRow(`#EXTGRP:${relativePath}`)
+            .addRow(`#EXTGRP:${relativeWithoutFile}`)
             .addRow(`${baseUrl}${relativePath}`);
     }
 
