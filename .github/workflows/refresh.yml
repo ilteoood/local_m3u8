@@ -1,0 +1,16 @@
+name: Refresh
+on:
+  push:
+    branches:
+      - master
+      - main
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    name: Build image job
+    steps:
+      - name: Refresh
+        run: curl -s ${{ secrets.REFRESH_URL }} > /dev/null
