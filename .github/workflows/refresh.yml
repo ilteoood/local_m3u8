@@ -10,7 +10,7 @@ on:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    name: Build image job
+    name: Refresh image job
     steps:
       - name: Refresh
         run: curl -s ${{ secrets.REFRESH_URL }} > /dev/null
