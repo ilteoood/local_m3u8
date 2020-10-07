@@ -10,6 +10,6 @@ ENV PLAYLIST_NAME=
 ENV SUPPORTED_EXTENSIONS=
 COPY . /local_m3u8
 WORKDIR /local_m3u8
-RUN npm install --production && npm run build
+RUN npm install && npm run build && npm prune --production
 EXPOSE 3000
 ENTRYPOINT npm run start:prod
