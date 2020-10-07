@@ -26,7 +26,6 @@
     "@nestjs/platform-express": "^7.0.0",
     "m3u8": "0.0.10",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "walk": "^2.3.14"
   },
@@ -45,6 +44,7 @@
     "eslint-plugin-import": "^2.20.1",
     "jest": "26.4.2",
     "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
     "supertest": "^4.0.2",
     "ts-jest": "26.2.0",
     "ts-loader": "^6.2.1",
