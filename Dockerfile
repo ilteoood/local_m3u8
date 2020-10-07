@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node:current-alpine
 LABEL maintainer.name="Matteo Pietro Dazzi" \
     maintainer.email="matteopietro.dazzi@gmail.com" \
     version="1.0.0" \
