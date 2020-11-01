@@ -18,15 +18,18 @@ export class AppController {
                 status: HttpStatus.INTERNAL_SERVER_ERROR
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.download(walkResult, `${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`);
-        return response;
+        return this.sendFile(response, walkResult);
     }
 
     @Get('/playlist')
     @Header('Content-Type', 'application/x-mpegURL')
     @Header('Content-Disposition', `attachment; filename=${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`)
     async getPlaylist(@Res() response) {
-        response.download(new PathWalker().playlistPath(), `${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`);
+        return this.sendFile(response);
+    }
+
+    private sendFile(response, playlistPath = new PathWalker().playlistPath()) {
+        response.download(playlistPath, `${process.env.PLAYLIST_NAME || "Rclone"}.m3u8`);
         return response;
     }
 }

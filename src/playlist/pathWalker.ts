@@ -4,7 +4,7 @@ import * as path from "path";
 
 export class PathWalker {
 
-    private readonly pathToScan: string = "/media";
+    private readonly pathToScan: string = "/Users/a34p/Downloads";
     private readonly supportedExtensions: string [] = ['.avi', '.mkv', '.mp4'];
 
     constructor() {
