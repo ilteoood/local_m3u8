@@ -13,12 +13,16 @@ export class AppController {
     async generatePlaylist(@Res() response) {
         const pathWalker = new PathWalker();
         const walkResult = await pathWalker.generate();
+        this.checkWalkResult(walkResult);
+        return this.sendFile(response, walkResult);
+    }
+
+    private checkWalkResult(walkResult: string) {
         if (!walkResult) {
             throw new HttpException({
                 status: HttpStatus.INTERNAL_SERVER_ERROR
             }, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return this.sendFile(response, walkResult);
     }
 
     @Get('/playlist')
