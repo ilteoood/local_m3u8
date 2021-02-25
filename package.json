@@ -26,7 +26,7 @@
     "@nestjs/platform-express": "^7.6.13",
     "m3u8": "0.0.10",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.4",
+    "rxjs": "^6.6.6",
     "walk": "^2.3.14"
   },
   "devDependencies": {
