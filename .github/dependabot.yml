@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: ts-loader
+    versions:
+    - 8.0.17
+    - 9.0.0
+  - dependency-name: eslint
+    versions:
+    - 7.22.0
