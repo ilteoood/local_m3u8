@@ -5,6 +5,23 @@ import (
 	"testing"
 )
 
+func TestAddPlaylistHeader (test *testing.T) {
+	playlist := Playlist{}
+	header := playlist.AddPlaylistHeader().content
+	if header != "#EXTM3U\n#PLAYLIST:Rclone.m3u8\n" {
+		test.Errorf("Generated wrong header: %s", header)
+	}
+}
+
+func TestAddPlaylistHeaderCustomPlaylistName (test *testing.T) {
+	playlist := Playlist{}
+	os.Setenv("PLAYLIST_NAME", "TestPlaylist")
+	header := playlist.AddPlaylistHeader().content
+	if header != "#EXTM3U\n#PLAYLIST:TestPlaylist.m3u8\n" {
+		test.Errorf("Generated wrong header: %s", header)
+	}
+}
+
 func TestAddInformation (test *testing.T) {
 	playlist := Playlist{}
 	information := playlist.AddInformation("/path/to/base/file.mp4").content

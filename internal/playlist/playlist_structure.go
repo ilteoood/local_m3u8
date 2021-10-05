@@ -16,6 +16,11 @@ func stripPathToScan(fileCompletePath string) string {
 	return strings.Replace(fileCompletePath, pathToScan, "", 1)
 }
 
+func (playlist Playlist) AddPlaylistHeader() Playlist {
+	playlistName := fmt.Sprintf("#PLAYLIST:%s", env.RetrieveFileName())
+	return playlist.AddRow("#EXTM3U").AddRow(playlistName)
+}
+
 func (playlist Playlist) AddInformation(fileCompletePath string) Playlist {
 	fileName := filepath.Base(fileCompletePath)
 	informationWithPrefix := fmt.Sprintf("#EXTINF:-1 tvg-name=\"%s\", %s", fileName, fileName)
