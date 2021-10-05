@@ -1,0 +1,75 @@
+package env
+
+import (
+	"os"
+	"testing"
+)
+
+func TestRetrieveFallbackFileName(test *testing.T) {
+	fileName := RetrieveFileName()
+	if fileName != "Rclone.m3u8" {
+		test.Errorf("Fallback name not valid: %s", fileName)
+	}
+}
+
+func TestRetrieveFallbackClearedFileName(test *testing.T) {
+	os.Clearenv()
+	fileName := RetrieveFileName()
+	if fileName != "Rclone.m3u8" {
+		test.Errorf("Fallback name not valid: %s", fileName)
+	}
+}
+
+func TestRetrieveRightFileName(test *testing.T) {
+	os.Setenv("PLAYLIST_NAME", "MyName")
+	fileName := RetrieveFileName()
+	if fileName != "MyName.m3u8" {
+		test.Errorf("Right file name not valid: %s", fileName)
+	}
+}
+
+func TestRetrieveFallbackPathToScan(test *testing.T) {
+	pathToScan := RetrievePathToScan()
+	if pathToScan != "./" {
+		test.Errorf("Invalid path to scan fallback: %s", pathToScan)
+	}
+}
+
+func TestRetrieveClearedPathToScan(test *testing.T) {
+	os.Clearenv()
+	pathToScan := RetrievePathToScan()
+	if pathToScan != "./" {
+		test.Errorf("Invalid path to scan fallback: %s", pathToScan)
+	}
+}
+
+func TestRetrieveRightPathToScan(test *testing.T) {
+	os.Setenv("PATH_TO_SCAN", "MyName")
+	pathToScan := RetrievePathToScan()
+	if pathToScan != "MyName" {
+		test.Errorf("Invalid path to scan: %s", pathToScan)
+	}
+}
+
+func TestRetrieveFallbackPathsToExclude(test *testing.T) {
+	pathsToExclude := RetrievePathsToExclude()
+	if len(pathsToExclude) != 0 {
+		test.Errorf("Invalid paths to exclude fallback: %+q", pathsToExclude)
+	}
+}
+
+func TestRetrieveClearedPathsToExclude(test *testing.T) {
+	os.Clearenv()
+	pathsToExclude := RetrievePathsToExclude()
+	if len(pathsToExclude) != 0 {
+		test.Errorf("Invalid paths to exclude fallback: %+q", pathsToExclude)
+	}
+}
+
+func TestRetrieveRightPathsToExclde(test *testing.T) {
+	os.Setenv("PATHS_TO_EXCLUDE", "/hello,/foo")
+	pathsToExclude := RetrievePathsToExclude()
+	if len(pathsToExclude) != 2 || pathsToExclude[0] != "/hello" || pathsToExclude[1] != "/foo" {
+		test.Errorf("Invalid paths to exclude: %+q", pathsToExclude)
+	}
+}
