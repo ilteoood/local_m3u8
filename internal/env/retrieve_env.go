@@ -22,6 +22,10 @@ func RetrievePathToScan() string {
 	return getEnv("PATH_TO_SCAN", "./")
 }
 
+func RetrieveBaseUrl() string {
+	return getEnv("BASE_URL", "localhost:8080")
+}
+
 func RetrievePathsToExclude() []string {
 	value, exists := os.LookupEnv("PATHS_TO_EXCLUDE")
 	pathsToExclude := []string{}

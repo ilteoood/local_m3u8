@@ -51,6 +51,29 @@ func TestRetrieveRightPathToScan(test *testing.T) {
 	}
 }
 
+func TestRetrieveFallbackBaseUrl(test *testing.T) {
+	baseUrl := RetrieveBaseUrl()
+	if baseUrl != "localhost:8080" {
+		test.Errorf("Invalid base url fallback: %s", baseUrl)
+	}
+}
+
+func TestRetrieveClearedFallbackBaseUrl(test *testing.T) {
+	os.Clearenv()
+	baseUrl := RetrieveBaseUrl()
+	if baseUrl != "localhost:8080" {
+		test.Errorf("Invalid base url fallback: %s", baseUrl)
+	}
+}
+
+func TestRetrieveRightFallbackBaseUrl(test *testing.T) {
+	os.Setenv("BASE_URL", "test.com")
+	baseUrl := RetrieveBaseUrl()
+	if baseUrl != "test.com" {
+		test.Errorf("Invalid base url: %s", baseUrl)
+	}
+}
+
 func TestRetrieveFallbackPathsToExclude(test *testing.T) {
 	pathsToExclude := RetrievePathsToExclude()
 	if len(pathsToExclude) != 0 {
