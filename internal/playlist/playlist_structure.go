@@ -8,7 +8,7 @@ import (
 )
 
 type Playlist struct {
-	content string
+	Content string
 }
 
 func stripPathToScan(fileCompletePath string) string {
@@ -19,6 +19,13 @@ func stripPathToScan(fileCompletePath string) string {
 func (playlist Playlist) AddPlaylistHeader() Playlist {
 	playlistName := fmt.Sprintf("#PLAYLIST:%s", env.RetrieveFileName())
 	return playlist.AddRow("#EXTM3U").AddRow(playlistName)
+}
+
+func (playlist Playlist) AddNewEntry(fileCompletePath string) Playlist {
+	return playlist.
+	AddInformation(fileCompletePath).
+	AddGroup(fileCompletePath).
+	AddFile(fileCompletePath)
 }
 
 func (playlist Playlist) AddInformation(fileCompletePath string) Playlist {
@@ -40,6 +47,6 @@ func (playlist Playlist) AddFile(fileCompletePath string) Playlist {
 }
 
 func (playlist Playlist) AddRow(rowContent string) Playlist {
-	playlist.content = playlist.content + rowContent + "\n"
+	playlist.Content = playlist.Content + rowContent + "\n"
 	return playlist
 }
