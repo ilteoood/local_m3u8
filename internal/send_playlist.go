@@ -22,11 +22,21 @@ func isExcludedPath(pathsToExclude []string, path string) bool {
 	return false
 }
 
+func isSupportedExtension(supportedExtensions []string, path string) bool {
+	for _, supportedExtension := range(supportedExtensions) {
+		if strings.HasSuffix(path, supportedExtension) {
+			return true
+		}
+	}
+	return false
+}
+
 func walker(playlist *playlist.Playlist) fs.WalkDirFunc {
 	pathsToExclude := env.RetrievePathsToExclude()
+	supportedExtensions := env.RetrieveSupportedExtensions()
 
 	return func(path string, d fs.DirEntry, err error) error {
-		canBeInserted := !d.IsDir() && !isExcludedPath(pathsToExclude, path)
+		canBeInserted := !d.IsDir() && !isExcludedPath(pathsToExclude, path) && isSupportedExtension(supportedExtensions, path)
 		if canBeInserted {
 			playlist.AddNewEntry(path)
 		}
