@@ -96,3 +96,27 @@ func TestRetrieveRightPathsToExclde(test *testing.T) {
 		test.Errorf("Invalid paths to exclude: %+q", pathsToExclude)
 	}
 }
+
+func TestRetrieveFallbackSupportedExtensions(test *testing.T) {
+	supportedExtensions := RetrieveSupportedExtensions()
+	if len(supportedExtensions) != 0 {
+		test.Errorf("Invalid supported extensions fallback: %+q", supportedExtensions)
+	}
+}
+
+func TestRetrieveClearedSupportedExtensions(test *testing.T) {
+	os.Clearenv()
+	supportedExtensions := RetrieveSupportedExtensions()
+	if len(pathsToExclude) != 0 {
+		test.Errorf("Invalid supported extensions fallback: %+q", supportedExtensions)
+	}
+}
+
+func TestRetrieveRightSupportedExtensions(test *testing.T) {
+	os.Setenv("SUPPORTED_EXTENSIONS", ".mp4,.mkv")
+	pathsToExclude := RetrievePathsToExclude()
+	if len(pathsToExclude) != 2 || pathsToExclude[0] != ".mp4" || pathsToExclude[1] != ".mkv" {
+		test.Errorf("Invalid supported extensions: %+q", pathsToExclude)
+	}
+}
+

@@ -26,11 +26,18 @@ func RetrieveBaseUrl() string {
 	return getEnv("BASE_URL", "localhost:8080")
 }
 
-func RetrievePathsToExclude() []string {
-	value, exists := os.LookupEnv("PATHS_TO_EXCLUDE")
-	pathsToExclude := []string{}
+func retrieveSplittedEnv(envName string, fallback []string) []string {
+	value, exists := os.LookupEnv(envName)
 	if exists {
-		pathsToExclude = strings.Split(value, ",")
+		return strings.Split(value, ",")
 	}
-	return pathsToExclude
+	return fallback
+}
+
+func RetrievePathsToExclude() []string {
+	return retrieveSplittedEnv("PATHS_TO_EXCLUDE", []string{})
+}
+
+func RetrieveSupportedExtensions() []string {
+	return retrieveSplittedEnv("SUPPORTED_EXTENSIONS", []string{".avi", ".mkv", ".mp4"})
 }
