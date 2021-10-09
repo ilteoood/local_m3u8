@@ -53,7 +53,7 @@ func retrievePlaylistPath () string {
 
 func savePlaylist (playlistPath string, playlist *playlist.Playlist) error {
 	file, error := os.Create(retrievePlaylistPath())
-	if error != nil {
+	if error == nil {
 		defer file.Close()
 		file.WriteString(playlist.Content)
 	}
