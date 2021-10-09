@@ -67,7 +67,7 @@ func GeneratePlaylist(echoContext echo.Context) error {
 	filepath.WalkDir(pathToScan, walker(&playlist))
 	saveError := savePlaylist(&playlist)
 	if saveError != nil {
-		return echoContext.Attachment(env.RetrievePlaylistPath(), env.RetrieveFileName())
+		return echoContext.File(env.RetrievePlaylistPath())
 	}
 	return echoContext.JSON(http.StatusNoContent, saveError)
 }
