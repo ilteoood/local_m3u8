@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@master
+      - name: Tests
+        run: go mod download
       - name: Build image
         uses: ilteoood/docker_buildx@master
         with:

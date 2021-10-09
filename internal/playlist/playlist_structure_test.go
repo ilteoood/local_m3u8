@@ -91,7 +91,7 @@ func TestAddEntry (test *testing.T) {
 	os.Setenv("PATH_TO_SCAN", "/path/to")
 	file := playlist.AddNewEntry("/path/to/base/file/with lots of spaces.mp4").Content
 	expectedContent := "#EXTINF:-1 tvg-name=\"with lots of spaces.mp4\", with lots of spaces.mp4\n" +
-		"#EXTGRP:/path/to/base/file\n" +
+		"#EXTGRP:/base/file\n" +
 		"test.com/base/file/with lots of spaces.mp4\n"
 	if file != expectedContent {
 		test.Errorf("Generated wrong file: %s", file)

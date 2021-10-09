@@ -5,6 +5,7 @@ import (
 	"ilteoood/local_m3u8/internal/env"
 	"ilteoood/local_m3u8/internal/playlist"
 	"io/fs"
+	"net/http"
 	"os"
 	"path"
 	"path/filepath"
@@ -50,9 +51,13 @@ func retrievePlaylistPath () string {
 	return path.Join(pathToScan, fileName)
 }
 
-func savePlaylist (playlistPath string, playlist *playlist.Playlist) {
-	file, _ := os.Create(retrievePlaylistPath())
-	file.WriteString(playlist.Content)
+func savePlaylist (playlistPath string, playlist *playlist.Playlist) error {
+	file, error := os.Create(retrievePlaylistPath())
+	if error != nil {
+		defer file.Close()
+		file.WriteString(playlist.Content)
+	}
+	return error
 }
 
 func enrichHeaders(echoContext echo.Context) {
@@ -68,6 +73,9 @@ func GeneratePlaylist(echoContext echo.Context) error {
 	playlist.AddPlaylistHeader()
 	filepath.WalkDir(pathToScan, walker(&playlist))
 	playlistPath := retrievePlaylistPath()
-	savePlaylist(playlistPath, &playlist)
-	return echoContext.Attachment(playlistPath, env.RetrieveFileName())
+	saveError := savePlaylist(playlistPath, &playlist)
+	if saveError != nil {
+		return echoContext.Attachment(playlistPath, env.RetrieveFileName())
+	}
+	return echoContext.JSON(http.StatusNoContent, saveError)
 }

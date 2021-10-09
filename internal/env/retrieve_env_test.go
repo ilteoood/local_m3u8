@@ -99,7 +99,7 @@ func TestRetrieveRightPathsToExclde(test *testing.T) {
 
 func TestRetrieveFallbackSupportedExtensions(test *testing.T) {
 	supportedExtensions := RetrieveSupportedExtensions()
-	if len(supportedExtensions) != 0 {
+	if len(supportedExtensions) == 0 {
 		test.Errorf("Invalid supported extensions fallback: %+q", supportedExtensions)
 	}
 }
@@ -107,14 +107,14 @@ func TestRetrieveFallbackSupportedExtensions(test *testing.T) {
 func TestRetrieveClearedSupportedExtensions(test *testing.T) {
 	os.Clearenv()
 	supportedExtensions := RetrieveSupportedExtensions()
-	if len(supportedExtensions) != 0 {
+	if len(supportedExtensions) == 0 {
 		test.Errorf("Invalid supported extensions fallback: %+q", supportedExtensions)
 	}
 }
 
 func TestRetrieveRightSupportedExtensions(test *testing.T) {
 	os.Setenv("SUPPORTED_EXTENSIONS", ".mp4,.mkv")
-	supportedExtensions := RetrievePathsToExclude()
+	supportedExtensions := RetrieveSupportedExtensions()
 	if len(supportedExtensions) != 2 || supportedExtensions[0] != ".mp4" || supportedExtensions[1] != ".mkv" {
 		test.Errorf("Invalid supported extensions: %+q", supportedExtensions)
 	}
