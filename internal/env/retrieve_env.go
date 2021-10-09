@@ -2,6 +2,7 @@ package env
 
 import (
 	"os"
+	"path"
 	"strings"
 )
 
@@ -24,6 +25,10 @@ func RetrievePathToScan() string {
 
 func RetrieveBaseUrl() string {
 	return getEnv("BASE_URL", "localhost:8080")
+}
+
+func RetrievePlaylistPath() string {
+	return path.Join(RetrievePathToScan(), RetrieveFileName())
 }
 
 func retrieveSplittedEnv(envName string, fallback []string) []string {

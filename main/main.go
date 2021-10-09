@@ -11,6 +11,6 @@ const START_PORT = ":3000"
 func main() {
 	echoServer := echo.New()
 	echoServer.GET("/playlist/generate", internal.GeneratePlaylist)
-	echoServer.File("/playlist", env.RetrieveFileName())
+	echoServer.File("/playlist", env.RetrievePlaylistPath())
 	echoServer.Start(START_PORT)
 }

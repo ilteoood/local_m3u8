@@ -7,7 +7,6 @@ import (
 	"io/fs"
 	"net/http"
 	"os"
-	"path"
 	"path/filepath"
 	"strings"
 
@@ -45,14 +44,8 @@ func walker(playlist *playlist.Playlist) fs.WalkDirFunc {
 	}
 }
 
-func retrievePlaylistPath () string {
-	pathToScan := env.RetrievePathToScan()
-	fileName := env.RetrieveFileName()
-	return path.Join(pathToScan, fileName)
-}
-
-func savePlaylist (playlistPath string, playlist *playlist.Playlist) error {
-	file, error := os.Create(retrievePlaylistPath())
+func savePlaylist (playlist *playlist.Playlist) error {
+	file, error := os.Create(env.RetrievePlaylistPath())
 	if error == nil {
 		defer file.Close()
 		file.WriteString(playlist.Content)
@@ -72,10 +65,9 @@ func GeneratePlaylist(echoContext echo.Context) error {
 	playlist := playlist.Playlist{}
 	playlist.AddPlaylistHeader()
 	filepath.WalkDir(pathToScan, walker(&playlist))
-	playlistPath := retrievePlaylistPath()
-	saveError := savePlaylist(playlistPath, &playlist)
+	saveError := savePlaylist(&playlist)
 	if saveError != nil {
-		return echoContext.Attachment(playlistPath, env.RetrieveFileName())
+		return echoContext.Attachment(env.RetrievePlaylistPath(), env.RetrieveFileName())
 	}
 	return echoContext.JSON(http.StatusNoContent, saveError)
 }
