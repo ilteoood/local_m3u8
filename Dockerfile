@@ -9,6 +9,7 @@ RUN go mod download && \
 
 ###################################
 
-FROM alpine
+FROM scratch
+USER scratchuser
 COPY --from=builder "/local_m3u8/local_m3u8" "./local_m3u8"
 ENTRYPOINT [ "./local_m3u8" ]
