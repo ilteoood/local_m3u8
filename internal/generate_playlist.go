@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"ilteoood/local_m3u8/internal/env"
 	"ilteoood/local_m3u8/internal/playlist"
 	"io/fs"
@@ -53,21 +52,14 @@ func savePlaylist (playlist *playlist.Playlist) error {
 	return error
 }
 
-func enrichHeaders(echoContext echo.Context) {
-	header := echoContext.Response().Header()
-	header.Set("Content-Type", "application/x-mpegURL")
-	header.Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", env.RetrieveFileName()))
-}
-
 func GeneratePlaylist(echoContext echo.Context) error {
-	enrichHeaders(echoContext)
 	pathToScan := env.RetrievePathToScan()
 	playlist := playlist.Playlist{}
 	playlist.AddPlaylistHeader()
 	filepath.WalkDir(pathToScan, walker(&playlist))
 	saveError := savePlaylist(&playlist)
-	if saveError != nil {
-		return echoContext.File(env.RetrievePlaylistPath())
+	if saveError == nil {
+		return echoContext.Attachment(env.RetrievePlaylistPath(), env.RetrieveFileName())
 	}
 	return echoContext.JSON(http.StatusNoContent, saveError)
 }
