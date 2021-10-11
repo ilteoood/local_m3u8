@@ -1,5 +1,5 @@
 # local_m3u8
-Scan all subdirectories and create a proper m3u8 file
+Scan all subdirectories and create a proper m3u8 file.
 
 ## Env variables
 - PLAYLIST_NAME: name used to generate the playlist, **without .m3u8** extension. Default: `Rclone`;
