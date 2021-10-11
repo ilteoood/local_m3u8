@@ -5,11 +5,13 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 RUN go mod download && \
     go test ./... && \
-    go build -o local_m3u8 ./main
+    go build -o local_m3u8 ./main && \
+    echo "nobody:x:65534:65534:Nobody:/:" > /etc_passwd
 
 ###################################
 
 FROM scratch
-USER scratchuser
 COPY --from=builder "/local_m3u8/local_m3u8" "./local_m3u8"
+COPY --from=builder "/etc_passwd" "/etc/passwd"
+USER nobody
 ENTRYPOINT [ "./local_m3u8" ]
