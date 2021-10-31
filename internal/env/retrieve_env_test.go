@@ -119,4 +119,3 @@ func TestRetrieveRightSupportedExtensions(test *testing.T) {
 		test.Errorf("Invalid supported extensions: %+q", supportedExtensions)
 	}
 }
-

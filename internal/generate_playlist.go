@@ -22,7 +22,7 @@ func isExcludedPath(pathsToExclude []string, path string) bool {
 }
 
 func isSupportedExtension(supportedExtensions []string, path string) bool {
-	for _, supportedExtension := range(supportedExtensions) {
+	for _, supportedExtension := range supportedExtensions {
 		if strings.HasSuffix(path, supportedExtension) {
 			return true
 		}
@@ -43,7 +43,7 @@ func walker(playlist *playlist.Playlist) fs.WalkDirFunc {
 	}
 }
 
-func savePlaylist (playlist *playlist.Playlist) error {
+func savePlaylist(playlist *playlist.Playlist) error {
 	file, error := os.Create(env.RetrievePlaylistPath())
 	if error == nil {
 		defer file.Close()

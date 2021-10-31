@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
 	"ilteoood/local_m3u8/internal"
+
+	"github.com/labstack/echo/v4"
 )
 
 const START_PORT = ":3000"
