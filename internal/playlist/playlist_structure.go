@@ -23,9 +23,9 @@ func (playlist *Playlist) AddPlaylistHeader() *Playlist {
 
 func (playlist *Playlist) AddNewEntry(fileCompletePath string) *Playlist {
 	return playlist.
-	AddInformation(fileCompletePath).
-	AddGroup(fileCompletePath).
-	AddFile(fileCompletePath)
+		AddInformation(fileCompletePath).
+		AddGroup(fileCompletePath).
+		AddFile(fileCompletePath)
 }
 
 func (playlist *Playlist) AddInformation(fileCompletePath string) *Playlist {

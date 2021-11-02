@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestAddPlaylistHeader (test *testing.T) {
+func TestAddPlaylistHeader(test *testing.T) {
 	playlist := Playlist{}
 	header := playlist.AddPlaylistHeader().Content
 	if header != "#EXTM3U\n#PLAYLIST:Rclone.m3u8\n" {
@@ -13,7 +13,7 @@ func TestAddPlaylistHeader (test *testing.T) {
 	}
 }
 
-func TestAddPlaylistHeaderCustomPlaylistName (test *testing.T) {
+func TestAddPlaylistHeaderCustomPlaylistName(test *testing.T) {
 	playlist := Playlist{}
 	os.Setenv("PLAYLIST_NAME", "TestPlaylist")
 	header := playlist.AddPlaylistHeader().Content
@@ -22,7 +22,7 @@ func TestAddPlaylistHeaderCustomPlaylistName (test *testing.T) {
 	}
 }
 
-func TestAddInformation (test *testing.T) {
+func TestAddInformation(test *testing.T) {
 	playlist := Playlist{}
 	information := playlist.AddInformation("/path/to/base/file.mp4").Content
 	if information != "#EXTINF:-1 tvg-name=\"file.mp4\", file.mp4\n" {
@@ -30,7 +30,7 @@ func TestAddInformation (test *testing.T) {
 	}
 }
 
-func TestAddInformationWithSpaces (test *testing.T) {
+func TestAddInformationWithSpaces(test *testing.T) {
 	playlist := Playlist{}
 	information := playlist.AddInformation("/path/to/base/file/with lots of spaces.mp4").Content
 	if information != "#EXTINF:-1 tvg-name=\"with lots of spaces.mp4\", with lots of spaces.mp4\n" {
@@ -38,7 +38,7 @@ func TestAddInformationWithSpaces (test *testing.T) {
 	}
 }
 
-func TestAddGroup (test *testing.T) {
+func TestAddGroup(test *testing.T) {
 	playlist := Playlist{}
 	group := playlist.AddGroup("/path/to/base/file/with lots of spaces.mp4").Content
 	if group != "#EXTGRP:/path/to/base/file\n" {
@@ -46,7 +46,7 @@ func TestAddGroup (test *testing.T) {
 	}
 }
 
-func TestAddGroupStripBase (test *testing.T) {
+func TestAddGroupStripBase(test *testing.T) {
 	playlist := Playlist{}
 	os.Setenv("PATH_TO_SCAN", "/path/to")
 	group := playlist.AddGroup("/path/to/base/file/with lots of spaces.mp4").Content
@@ -56,7 +56,7 @@ func TestAddGroupStripBase (test *testing.T) {
 	os.Clearenv()
 }
 
-func TestAddFile (test *testing.T) {
+func TestAddFile(test *testing.T) {
 	playlist := Playlist{}
 	file := playlist.AddFile("/path/to/base/file/with lots of spaces.mp4").Content
 	if file != "localhost:8080/path/to/base/file/with lots of spaces.mp4\n" {
@@ -64,7 +64,7 @@ func TestAddFile (test *testing.T) {
 	}
 }
 
-func TestAddGroupBaseUrl (test *testing.T) {
+func TestAddGroupBaseUrl(test *testing.T) {
 	playlist := Playlist{}
 	os.Setenv("BASE_URL", "test.com")
 	file := playlist.AddFile("/path/to/base/file/with lots of spaces.mp4").Content
@@ -74,7 +74,7 @@ func TestAddGroupBaseUrl (test *testing.T) {
 	os.Clearenv()
 }
 
-func TestAddGroupBaseUrlStripped (test *testing.T) {
+func TestAddGroupBaseUrlStripped(test *testing.T) {
 	playlist := Playlist{}
 	os.Setenv("BASE_URL", "test.com")
 	os.Setenv("PATH_TO_SCAN", "/path/to")
@@ -85,7 +85,7 @@ func TestAddGroupBaseUrlStripped (test *testing.T) {
 	os.Clearenv()
 }
 
-func TestAddEntry (test *testing.T) {
+func TestAddEntry(test *testing.T) {
 	playlist := Playlist{}
 	os.Setenv("BASE_URL", "test.com")
 	os.Setenv("PATH_TO_SCAN", "/path/to")
