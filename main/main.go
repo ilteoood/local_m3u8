@@ -4,7 +4,7 @@ import (
 	"ilteoood/local_m3u8/internal"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 const START_PORT = ":3000"
