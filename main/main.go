@@ -17,5 +17,6 @@ func main() {
 
 	echoServer.GET("/playlist/generate", internal.GeneratePlaylist)
 	echoServer.GET("/playlist", internal.SendPlaylist)
+	
 	echoServer.Start(START_PORT)
 }
