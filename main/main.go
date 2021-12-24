@@ -10,6 +10,10 @@ const START_PORT = ":3000"
 
 func main() {
 	echoServer := echo.New()
+
+	echoServer.Use(middleware.Logger())
+	echoServer.Use(middleware.Recover())
+	
 	echoServer.GET("/playlist/generate", internal.GeneratePlaylist)
 	echoServer.GET("/playlist", internal.SendPlaylist)
 	echoServer.Start(START_PORT)
