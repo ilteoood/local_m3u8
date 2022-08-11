@@ -2,4 +2,4 @@ module ilteoood/local_m3u8
 
 go 1.16
 
-require github.com/labstack/echo/v4 v4.7.2
+require github.com/labstack/echo/v4 v4.8.0
