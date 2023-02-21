@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine3.14 as builder
+FROM golang:1.20.1-alpine3.17 as builder
 ADD . /local_m3u8
 WORKDIR /local_m3u8
 ENV CGO_ENABLED=0
