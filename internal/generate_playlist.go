@@ -61,5 +61,6 @@ func GeneratePlaylist(echoContext echo.Context) error {
 	if saveError == nil {
 		return echoContext.Attachment(env.RetrievePlaylistPath(), env.RetrieveFileName())
 	}
-	return echoContext.JSON(http.StatusNoContent, saveError)
+
+	return echoContext.NoContent(http.StatusNoContent)
 }
