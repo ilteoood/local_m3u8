@@ -62,5 +62,7 @@ func GeneratePlaylist(echoContext echo.Context) error {
 		return echoContext.Attachment(env.RetrievePlaylistPath(), env.RetrieveFileName())
 	}
 
+	echoContext.Logger().Error("Unable to generate playlist", saveError.Error())
+
 	return echoContext.NoContent(http.StatusNoContent)
 }
