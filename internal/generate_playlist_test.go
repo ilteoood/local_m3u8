@@ -1,8 +1,10 @@
 package internal
 
 import (
+	"ilteoood/local_m3u8/internal/env"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/labstack/echo/v4"
@@ -19,4 +21,5 @@ func TestGetPlaylist(test *testing.T) {
 	if playlist != nil {
 		test.Error("Error during playlist generation")
 	}
+	os.Remove(env.RetrievePlaylistPath())
 }
