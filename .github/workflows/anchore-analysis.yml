@@ -19,15 +19,11 @@ jobs:
   Anchore-Build-Scan:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Build local Docker image
-      run: docker build -t local_m3u8:scan .
     - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
       uses: anchore/scan-action@v3
       with:
-        image: "local_m3u8:scan"
+        image: "ilteoood/local_m3u8:latest"
     - name: Upload Anchore Scan Report
-      uses: github/codeql-action/upload-sarif@v3
+      uses: github/codeql-action/upload-sarif@v1
       with:
         sarif_file: results.sarif
