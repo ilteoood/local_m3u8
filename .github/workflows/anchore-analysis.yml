@@ -20,10 +20,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
+      id: scan
       uses: anchore/scan-action@v3
       with:
         image: "ilteoood/local_m3u8:latest"
+        output-format: sarif
+        fail-build: false
     - name: Upload Anchore Scan Report
       uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: results.sarif
+        sarif_file: ${{ steps.scan.outputs.sarif }}
+    - name: Run Anchore scan for JSON output
+      id: scan-json
+      uses: anchore/scan-action@v3
+      with:
+        image: "ilteoood/local_m3u8:latest"
+        output-format: json
+        fail-build: false
+    - name: Upload Anchore JSON Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: anchore-scan-results
+        path: ${{ steps.scan-json.outputs.json }}
