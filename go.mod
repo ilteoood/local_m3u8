@@ -2,7 +2,7 @@ module ilteoood/local_m3u8
 
 go 1.25.4
 
-require github.com/labstack/echo/v4 v4.14.0
+require github.com/labstack/echo/v4 v4.15.0
 
 require (
 	github.com/labstack/gommon v0.4.2 // indirect
